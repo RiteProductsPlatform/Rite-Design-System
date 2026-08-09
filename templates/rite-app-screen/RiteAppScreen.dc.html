@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="RiteSuite app screen" description="RiteSuite console shell — Deep Forest sidebar, sticky top bar, stat row and a record table, built from the design system's own components." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;background:#F9F9F9;font-family:"Poppins",sans-serif}</style>
+</helmet>
+<div style="display:flex;height:100vh;overflow:hidden;background:#F9F9F9">
+
+<x-import component-from-global-scope="{{ SideNavRef }}" sections="{{ navSections }}" active="{{ activeNav }}" onSelect="{{ onNav }}" header="{{ navHeader }}" hint-size="248px,100%" style="height:100%">
+</x-import>
+
+<div style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden">
+
+<x-import component-from-global-scope="{{ TopBarRef }}" eyebrow="Workspace" title="Portfolio overview" hint-size="100%,60px">
+</x-import>
+
+<main style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<x-import component-from-global-scope="{{ StatTileRef }}" value="18" label="Active engagements" delta="+2" icon="briefcase" hint-size="100%,104px"></x-import>
+<x-import component-from-global-scope="{{ StatTileRef }}" value="$41.2M" label="Bid pipeline" delta="+8.4%" icon="trending-up" hint-size="100%,104px"></x-import>
+<x-import component-from-global-scope="{{ StatTileRef }}" value="98.4%" label="SLA adherence" delta="+1.2 pts" icon="gauge" hint-size="100%,104px"></x-import>
+<x-import component-from-global-scope="{{ StatTileRef }}" value="27" label="Open escalations" delta="+5" deltaTone="danger" icon="octagon-alert" hint-size="100%,104px"></x-import>
+</div>
+
+<section style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+<h2 style="font:600 16px/1.3 'Poppins',sans-serif;letter-spacing:-.01em;color:#1A1A1A;margin:0">Active engagements</h2>
+<x-import component-from-global-scope="{{ ButtonRef }}" variant="ghost" size="sm" iconAfter="arrow-right" hint-size="120px,32px">View all</x-import>
+</div>
+<x-import component-from-global-scope="{{ CardRef }}" padding="{{ zero }}" hint-size="100%,280px">
+<x-import component-from-global-scope="{{ DataTableRef }}" columns="{{ tableColumns }}" rows="{{ tableRows }}" hint-size="100%,280px"></x-import>
+</x-import>
+</section>
+
+</main>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const NS = 'RiteDesignSystem_277c56';
+
+class Component extends DCLogic {
+  state = { active: 'overview' };
+
+  renderVals() {
+    const R = window[NS] || {};
+    const Badge = R.Badge;
+    const ProgressBar = R.ProgressBar;
+    return {
+      zero: 0,
+      SideNavRef: NS + '.SideNav',
+      TopBarRef: NS + '.TopBar',
+      StatTileRef: NS + '.StatTile',
+      ButtonRef: NS + '.Button',
+      CardRef: NS + '.Card',
+      DataTableRef: NS + '.DataTable',
+      navHeader: React.createElement('img', { src: '../../assets/logo/rite-logo-lockup-white.png', alt: 'Rite', style: { height: 24, width: 'auto', display: 'block' } }),
+      activeNav: this.state.active,
+      onNav: (id) => this.setState({ active: id }),
+      navSections: [
+        { label: 'Workspace', items: [
+          { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
+          { id: 'projects', label: 'Engagements', icon: 'briefcase', count: 18 },
+        ] },
+        { label: 'RiteSuite', items: [
+          { id: 'convertrite', label: 'ConvertRite', icon: 'database', count: 6 },
+          { id: 'bidrite', label: 'BidRite', icon: 'file-text', count: 12 },
+          { id: 'revrite', label: 'RevRite', icon: 'receipt' },
+          { id: 'wagerite', label: 'WageRite', icon: 'wallet' },
+        ] },
+        { label: 'Insight', items: [
+          { id: 'analytics', label: 'Rite Analytics', icon: 'chart-column' },
+          { id: 'settings', label: 'Settings', icon: 'settings' },
+        ] },
+      ],
+      tableColumns: [
+        { key: 'client', header: 'Client', sortable: true },
+        { key: 'phase', header: 'Phase', muted: true },
+        { key: 'pct', header: 'Progress', width: 140, render: (r) =>
+          ProgressBar ? React.createElement(ProgressBar, { value: r.pct, size: 'sm', tone: r.tone === 'danger' ? 'danger' : 'brand' }) : null },
+        { key: 'go', header: 'Go-live', mono: true, align: 'right' },
+        { key: 'health', header: 'Health', render: (r) =>
+          Badge ? React.createElement(Badge, { tone: r.tone, dot: true }, r.health) : r.health },
+      ],
+      tableRows: [
+        { id: 1, client: 'Cianbro', phase: 'Mock 4', pct: 78, go: '12-OCT-2026', health: 'On track', tone: 'success' },
+        { id: 2, client: 'Sunbelt Energy', phase: 'CRP 2', pct: 41, go: '04-FEB-2027', health: 'At risk', tone: 'warning' },
+        { id: 3, client: 'Halvorsen EPC', phase: 'Design', pct: 22, go: '18-MAY-2027', health: 'On track', tone: 'success' },
+        { id: 4, client: 'Northline Health', phase: 'Cutover', pct: 94, go: '29-AUG-2026', health: 'Escalated', tone: 'danger' },
+        { id: 5, client: 'Delta Marine', phase: 'Steady state', pct: 100, go: 'Live', health: 'On track', tone: 'success' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

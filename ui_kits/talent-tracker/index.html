@@ -1,0 +1,236 @@
+<!-- @dsCard group="Talent Tracker" viewport="1440x900" name="Talent Tracker" subtitle="Full recruitment app on the Rite Design System — 8 screens, RBAC, kanban, offer portal" -->
+<!-- @startingPoint section="Applications" subtitle="RITE Talent Tracker — enterprise recruitment console" viewport="1440x900" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>RITE Talent Tracker</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>window.RiteDS = window.RiteDesignSystem_277c56;</script>
+<script src="data.js"></script>
+<script src="rbac.js"></script>
+<style>html,body,#root{height:100%;margin:0}body{background:var(--surface-page);overflow:hidden}#root{overflow:hidden}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" src="Shell.jsx"></script>
+<script type="text/babel" src="Requirements.jsx"></script>
+<script type="text/babel" src="RequirementModal.jsx"></script>
+<script type="text/babel" src="Candidates.jsx"></script>
+<script type="text/babel" src="CandidateModal.jsx"></script>
+<script type="text/babel" src="MISReports.jsx"></script>
+<script type="text/babel" src="OffersDocs.jsx"></script>
+<script type="text/babel" src="Admin.jsx"></script>
+<script type="text/babel" src="OfferPortal.jsx"></script>
+<script type="text/babel">
+const { Button, Input, FieldGroup, Checkbox, Toast, Card, Badge, Icon, EmptyState, Select, Avatar, Banner, DataTable, Tabs } = window.RiteDS;
+
+/* ── 1 · Login ──────────────────────────────────────────────────────────── */
+function Login({ onSignIn, role, onRoleChange }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', height: '100%', background: 'var(--surface-card)' }}>
+      <div style={{ position: 'relative', background: 'var(--rite-deep-forest)', padding: '52px 56px 44px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }}>
+        <img src="../../assets/logo/rite-mark.png" alt="" style={{ position: 'absolute', right: -120, top: -110, width: 460, opacity: .12, pointerEvents: 'none' }} />
+        <img src="../../assets/illustrations/deco-arc-dotted.png" alt="" style={{ position: 'absolute', left: -70, bottom: -90, width: 320, opacity: .5, pointerEvents: 'none' }} />
+        <img src="../../assets/logo/rite-logo-lockup-white.png" alt="Rite" style={{ height: 30, position: 'relative' }} />
+        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 440 }}>
+          <div style={{ font: '600 13px/1.2 var(--font-sans)', letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--rite-signal-mint)' }}>Talent Tracker</div>
+          <h1 className="rite-underline" style={{ font: '700 42px/1.1 var(--font-sans)', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
+            Every requirement, every candidate, one pipeline.
+          </h1>
+          <p style={{ font: '400 16px/1.6 var(--font-sans)', color: 'var(--rite-sage)' }}>
+            From the requirement raised to the offer accepted — with SLA visibility at every stage and no spreadsheet in the middle.
+          </p>
+        </div>
+        <div style={{ position: 'relative', display: 'flex', gap: 38 }}>
+          {[['47', 'Open requirements'], ['142', 'Candidates in flight'], ['14.2', 'Days to fill']].map((p) => (
+            <div key={p[1]}>
+              <div style={{ font: '700 28px/1 var(--font-sans)', letterSpacing: '-0.02em', color: '#FFFFFF' }}>{p[0]}</div>
+              <div style={{ font: '400 12px/1.3 var(--font-sans)', color: 'var(--rite-sage)', marginTop: 6 }}>{p[1]}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 48, overflowY: 'auto' }}>
+        <form onSubmit={(e) => { e.preventDefault(); onSignIn(); }} style={{ width: '100%', maxWidth: 350, display: 'flex', flexDirection: 'column', gap: 17 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <h2 style={{ font: '600 24px/1.25 var(--font-sans)', letterSpacing: '-0.02em' }}>Sign in</h2>
+            <p style={{ font: '400 14px/1.5 var(--font-sans)', color: 'var(--text-tertiary)' }}>Use your Rite Microsoft 365 account.</p>
+          </div>
+          <Button size="lg" fullWidth icon="building-2" onClick={onSignIn}>Sign in with Microsoft 365</Button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ flex: 1, height: 1, background: 'var(--border-subtle)' }} />
+            <span style={{ font: '400 12px/1 var(--font-sans)', color: 'var(--text-tertiary)' }}>or continue as</span>
+            <span style={{ flex: 1, height: 1, background: 'var(--border-subtle)' }} />
+          </div>
+          <FieldGroup label="Role (SSO stub)" hint="MSAL is not wired yet — pick a role to explore the RBAC behaviour." htmlFor="role">
+            <Select id="role" value={role} onChange={(e) => onRoleChange(e.target.value)}
+              options={window.TT_ROLES.map((r) => ({ value: r.code, label: r.label + ' · ' + r.user }))} />
+          </FieldGroup>
+          <Button size="lg" variant="secondary" fullWidth iconAfter="arrow-right" onClick={onSignIn}>Continue</Button>
+          <p style={{ font: '400 12px/1.6 var(--font-sans)', color: 'var(--text-tertiary)', textAlign: 'center', marginTop: 4 }}>
+            Trouble signing in? Contact <a href="#" onClick={(e) => e.preventDefault()}>hello@rite.digital</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+/* ── Placeholder surfaces the spec names but does not define ────────────── */
+function TrackLeads({ role }) {
+  const rows = window.TT_REQUIREMENTS.reduce((acc, r) => {
+    const key = r.ownerName || '—';
+    const hit = acc.find((a) => a.id === key);
+    const cands = window.TT_CANDIDATES.filter((c) => c.requirementId === r.id).length;
+    if (hit) { hit.reqs += 1; hit.positions += r.noOfPositions; hit.candidates += cands; }
+    else acc.push({ id: key, owner: key, reqs: 1, positions: r.noOfPositions, candidates: cands });
+    return acc;
+  }, []);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 1040 }}>
+      <Banner tone="info" title="Derived view">
+        The spec names a Track Leads page but does not define its layout, so this shows the load per track lead derived from requirement ownership rather than inventing a new screen.
+      </Banner>
+      <Card padding={0}>
+        <DataTable columns={[
+          { key: 'owner', header: 'Track lead', render: (r) => (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}><Avatar name={r.owner} size="sm" /><span style={{ font: '500 14px/1.2 var(--font-sans)' }}>{r.owner}</span></span>
+          ) },
+          { key: 'reqs', header: 'Requirements', align: 'right', mono: true },
+          { key: 'positions', header: 'Open positions', align: 'right', mono: true },
+          { key: 'candidates', header: 'Candidates in pipeline', align: 'right', mono: true },
+        ]} rows={rows} />
+      </Card>
+    </div>
+  );
+}
+
+function RecruiterDesk({ onOpenCandidate }) {
+  const mine = window.TT_CANDIDATES.filter((c) => c.recruiterName === 'Priya Nair');
+  const overdue = mine.filter((c) => window.ttSlaState(c).tone === 'danger');
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 1200 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+        {[['My candidates', mine.length, 'users'], ['Needing action', overdue.length, 'triangle-alert'], ['Interviews this week', 3, 'calendar'], ['Offers out', 1, 'file-signature']].map((p) => (
+          <Card key={p[0]} padding={18}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 'var(--radius-md)', background: 'var(--surface-subtle)', color: 'var(--text-brand)' }}><Icon name={p[2]} size={18} /></span>
+              <span><span style={{ display: 'block', font: '700 24px/1 var(--font-sans)', letterSpacing: '-0.02em' }}>{p[1]}</span>
+              <span style={{ display: 'block', font: '400 12px/1.3 var(--font-sans)', color: 'var(--text-tertiary)', marginTop: 5 }}>{p[0]}</span></span>
+            </div>
+          </Card>
+        ))}
+      </div>
+      <Card padding={0} header={<span style={{ font: '600 14px/1.2 var(--font-sans)' }}>My pipeline — needs attention first</span>}>
+        <DataTable onRowClick={onOpenCandidate} columns={[
+          { key: 'name', header: 'Candidate', render: (c) => (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}><Avatar name={c.talent.fullName} size="sm" />
+              <span><span style={{ display: 'block', font: '500 14px/1.2 var(--font-sans)' }}>{c.talent.fullName}</span>
+              <span style={{ display: 'block', font: '400 11px/1.2 var(--font-mono)', color: 'var(--text-tertiary)', marginTop: 3 }}>{c.candNo}</span></span></span>
+          ) },
+          { key: 'req', header: 'Requirement', mono: true, muted: true, render: (c) => window.ttReqNo(c.requirementId) },
+          { key: 'stage', header: 'Stage', render: (c) => <Badge tone={window.TT_STAGE_TONE[c.currentStageCode]} dot>{(window.TT_STAGES.find((s) => s.stageCode === c.currentStageCode) || {}).stageName}</Badge> },
+          { key: 'sla', header: 'In stage', align: 'right', render: (c) => {
+            const s = window.ttSlaState(c);
+            return <span style={{ font: '400 12px/1.2 var(--font-mono)', color: s.tone === 'danger' ? 'var(--status-danger)' : s.tone === 'warning' ? 'var(--status-warning)' : 'var(--text-tertiary)' }}>{s.label}</span>;
+          } },
+        ]} rows={mine.slice().sort((a, b) => (window.ttSlaState(b).tone === 'danger' ? 1 : 0) - (window.ttSlaState(a).tone === 'danger' ? 1 : 0))} />
+      </Card>
+    </div>
+  );
+}
+
+/* ── App ────────────────────────────────────────────────────────────────── */
+const TITLES = {
+  requirements: { eyebrow: 'Pipeline', title: 'Requirements' },
+  candidates: { eyebrow: 'Pipeline', title: 'Candidate pipeline' },
+  'track-leads': { eyebrow: 'Pipeline', title: 'Track leads' },
+  recruiter: { eyebrow: 'Pipeline', title: 'Recruiter desk' },
+  'mis-reports': { eyebrow: 'Analytics', title: 'MIS reports' },
+  'offers-docs': { eyebrow: 'Pipeline', title: 'Offers & documentation' },
+  admin: { eyebrow: 'Configuration', title: 'Access control' },
+};
+
+function App() {
+  const [authed, setAuthed] = React.useState(false);
+  const [portal, setPortal] = React.useState(false);
+  const [role, setRole] = React.useState('RECRUITER');
+  const [route, setRoute] = React.useState('requirements');
+  const [reqModal, setReqModal] = React.useState(null);
+  const [candModal, setCandModal] = React.useState(null);
+  const [reqFilter, setReqFilter] = React.useState(null);
+  const [toasts, setToasts] = React.useState([]);
+
+  const pushToast = React.useCallback((t) => {
+    const id = Date.now() + Math.random();
+    setToasts((ts) => [...ts, { ...t, id }]);
+    setTimeout(() => setToasts((ts) => ts.filter((x) => x.id !== id)), 5000);
+  }, []);
+
+  /* Keep the route legal for the current role. */
+  React.useEffect(() => {
+    const page = window.TT_PAGES.find((p) => p.route === route);
+    if (page && !window.ttCanSee(role, page.pageCode)) {
+      const first = window.ttVisiblePages(role)[0];
+      setRoute(first ? first.route : 'candidates');
+    }
+  }, [role, route]);
+
+  if (portal) return <OfferPortal onExit={() => setPortal(false)} />;
+  if (!authed) return <Login onSignIn={() => setAuthed(true)} role={role} onRoleChange={setRole} />;
+
+  const meta = TITLES[route] || TITLES.requirements;
+  const page = window.TT_PAGES.find((p) => p.route === route) || {};
+  const canEdit = window.ttCanEdit(role, page.pageCode);
+
+  const go = (r) => { setReqFilter(null); setRoute(r); };
+
+  let body = null;
+  if (route === 'requirements') body = (
+    <Requirements role={role}
+      onOpenRequirement={(r) => setReqModal(r)}
+      onNewRequirement={() => setReqModal({})}
+      onOpenCandidates={(id) => { setReqFilter(id); setRoute('candidates'); }} />
+  );
+  else if (route === 'candidates') body = (
+    <Candidates role={role} requirementFilter={reqFilter} onOpenCandidate={setCandModal} onToast={pushToast} />
+  );
+  else if (route === 'track-leads') body = <TrackLeads role={role} />;
+  else if (route === 'recruiter') body = <RecruiterDesk onOpenCandidate={setCandModal} />;
+  else if (route === 'mis-reports') body = <MISReports role={role} />;
+  else if (route === 'offers-docs') body = <OffersDocs role={role} onToast={pushToast} onOpenPortal={() => setPortal(true)} />;
+  else if (route === 'admin') body = <Admin role={role} onToast={pushToast} />;
+  else body = <NotPermitted page={meta.title} />;
+
+  const actions = route === 'requirements' && canEdit
+    ? <Button size="sm" icon="plus" onClick={() => setReqModal({})}>New requirement</Button>
+    : route === 'offers-docs'
+    ? <Button size="sm" variant="secondary" icon="external-link" onClick={() => setPortal(true)}>Candidate portal</Button>
+    : null;
+
+  return (
+    <>
+      <Shell role={role} onRoleChange={setRole} route={route} onNavigate={go}
+        title={meta.title} eyebrow={meta.eyebrow} actions={actions}>
+        {body}
+      </Shell>
+
+      <RequirementModal open={!!reqModal} requirement={reqModal && reqModal.id ? reqModal : null}
+        readOnly={!canEdit} onClose={() => setReqModal(null)}
+        onSaved={() => { setReqModal(null); pushToast({ tone: 'success', title: 'Requirement saved', body: 'It is now visible to the sourcing team.' }); }} />
+
+      <CandidateModal open={!!candModal} candidate={candModal} role={role}
+        readOnly={!window.ttCanEdit(role, 'TT_CANDIDATES')}
+        onClose={() => setCandModal(null)} onToast={pushToast} />
+
+      <div style={{ position: 'fixed', right: 24, bottom: 24, zIndex: 400, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {toasts.map((t) => (
+          <Toast key={t.id} tone={t.tone} title={t.title} onDismiss={() => setToasts((ts) => ts.filter((x) => x.id !== t.id))}>{t.body}</Toast>
+        ))}
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

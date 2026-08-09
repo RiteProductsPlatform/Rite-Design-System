@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Navigation" subtitle="SideNav, TopBar, Tabs, Breadcrumbs" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:20px;background:#fff}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.col{display:flex;flex-direction:column;gap:14px}.lbl{font:600 10px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary)}</style><style>body{padding:0}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const { SideNav, TopBar, TopBarSearch, Tabs, Breadcrumbs, IconButton, Button, Logo, Avatar } = window.RiteDesignSystem_277c56;
+function Demo(){const[v,setV]=React.useState('conv');const[t,setT]=React.useState('map');const[p,setP]=React.useState('w');
+return(<div style={{display:'flex',height:360,background:'var(--surface-page)'}}>
+<SideNav active={v} onSelect={setV} header={<Logo on="dark" height={22} base="../../assets/logo/" />}
+ sections={[{label:'Workspace',items:[{id:'home',label:'Overview',icon:'layout-dashboard'},{id:'conv',label:'Conversions',icon:'database',count:12},{id:'bids',label:'Bids',icon:'file-text',count:4}]},{label:'Suite',items:[{id:'an',label:'Rite Analytics',icon:'chart-column'},{id:'set',label:'Settings',icon:'settings'}]}]} />
+<div style={{flex:1,display:'flex',flexDirection:'column',minWidth:0}}>
+<TopBar breadcrumbs={<Breadcrumbs items={[{id:'r',label:'RiteSuite'},{id:'c',label:'ConvertRite'},{label:'Cianbro HCM'}]} />} title="Cianbro HCM conversion"
+ actions={<><TopBarSearch width={180} /><IconButton icon="bell" label="Notifications" /><Button size="sm" icon="play">Run</Button><Avatar name="Rob Brown" size="sm" /></>} />
+<div style={{padding:'16px 24px',display:'flex',flexDirection:'column',gap:20}}>
+<Tabs items={[{id:'map',label:'Mapping',count:42},{id:'log',label:'Run log'},{id:'exc',label:'Exceptions',count:14},{id:'set',label:'Settings',icon:'settings'}]} active={t} onSelect={setT} />
+<Tabs variant="pill" items={[{id:'w',label:'Week'},{id:'m',label:'Month'},{id:'q',label:'Quarter'}]} active={p} onSelect={setP} />
+</div></div></div>)}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

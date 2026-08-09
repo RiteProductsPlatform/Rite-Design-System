@@ -1,0 +1,25 @@
+/* Minimal element defaults so specimen cards, kits and prototypes inherit the brand
+   without a reset library. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font:var(--type-body);color:var(--text-primary);background:var(--surface-page);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{margin:0;letter-spacing:var(--tracking-display);color:var(--text-primary)}
+h1{font:var(--type-h1)}h2{font:var(--type-h2)}h3{font:var(--type-h3)}h4{font:var(--type-h4)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-link);text-decoration:none;transition:color var(--duration-fast) var(--ease-standard)}
+a:hover{color:var(--text-link-hover);text-decoration:underline;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
+button{font:inherit}
+code,kbd,samp,pre{font-family:var(--font-mono)}
+hr{border:0;border-top:1px solid var(--border-subtle);margin:var(--space-6) 0}
+::selection{background:var(--rite-signal-mint);color:var(--rite-deep-forest)}
+
+/* The one brand flourish that recurs across the deck: a short mint rule under a
+   display heading. Opt in with class="rite-underline". */
+.rite-underline{position:relative;padding-bottom:var(--space-4)}
+.rite-underline::after{content:"";position:absolute;left:0;bottom:0;width:96px;height:4px;background:var(--rite-signal-mint);border-radius:var(--radius-pill)}
+
+/* Eyebrow label — small, wide-tracked, uppercase, mint on dark / green on light. */
+.rite-eyebrow{font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-sans);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--text-brand)}
+
+@keyframes rite-spin{to{transform:rotate(360deg)}}
+@keyframes rite-fade{from{opacity:0}to{opacity:1}}

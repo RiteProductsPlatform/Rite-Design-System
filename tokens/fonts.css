@@ -1,0 +1,7 @@
+/* Rite webfonts.
+   Poppins is the single brand family (deck embeds Poppins ExtraLight/Regular/Italic/
+   SemiBold/Bold). IBM Plex Mono carries figures, IDs and code. Georgia appears only in
+   long-form editorial pull quotes in the deck and is a system serif — no webfont needed.
+   Both webfonts are served from the Google Fonts CDN; see readme.md > Typography for
+   the note on self-hosting. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
