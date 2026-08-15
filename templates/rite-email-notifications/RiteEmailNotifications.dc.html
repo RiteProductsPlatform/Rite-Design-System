@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Rite e-mail notifications" description="Send-ready notification e-mail shell plus nine notification types, with the pattern sheet that documents them." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  a { color: var(--text-link); text-decoration: none; }
+  a:hover { color: var(--text-link-hover); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</helmet>
+
+<div style="background:var(--surface-page);font-family:var(--font-sans);color:var(--text-primary);min-height:100%;">
+
+  <div class="rite-dark" style="background:var(--surface-inverse);padding:56px 64px 52px 64px;">
+    <div style="max-width:1320px;margin:0 auto;">
+      <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="mint" hint-size="auto,16px">Rite design system · Notifications</x-import>
+      <div style="height:4px;width:48px;background:var(--rite-signal-mint);margin:16px 0 22px 0;"></div>
+      <h1 style="margin:0;font-size:52px;font-weight:700;letter-spacing:-.02em;line-height:1.05;color:var(--text-on-inverse);max-width:15ch;">E-mail notification templates</h1>
+      <p style="margin:20px 0 0 0;font-size:17px;line-height:1.5;color:var(--text-on-inverse-muted);max-width:64ch;text-wrap:pretty;">One send-ready shell every RiteSuite module writes into, plus nine notification types built on it. Table-based, inline-styled, no web fonts and one hosted logo — they survive Outlook, Gmail and Apple Mail as sent.</p>
+      <div style="display:flex;gap:20px;margin-top:36px;flex-wrap:wrap;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.StatTile" tone="dark" value="10" label="HTML files, zero dependencies" style="width:230px" hint-size="230px,96px"></x-import>
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.StatTile" tone="dark" value="600px" label="Single column, table-based" style="width:230px" hint-size="230px,96px"></x-import>
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.StatTile" tone="dark" value="${field}" label="Merge syntax, server-side" style="width:230px" hint-size="230px,96px"></x-import>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ showSpec }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1320px;margin:0 auto;padding:56px 64px 0 64px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+
+      <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,380px">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">Shell anatomy</x-import>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:18px;">
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">01</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">Deep Forest header</strong> — <span style="color:var(--text-secondary);">reversed Rite lockup left, module name right in Sage caps.</span></span></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">02</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">4px signal rule</strong> — <span style="color:var(--text-secondary);">Mint normally, Ember for failures, Amber for overdue.</span></span></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">03</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">Eyebrow → headline → standfirst</strong> — <span style="color:var(--text-secondary);">the brand triad, sentence-case headline.</span></span></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">04</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">One or two content blocks</strong> — <span style="color:var(--text-secondary);">details, table, timeline, metrics, list or code panel.</span></span></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">05</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">One primary action</strong> — <span style="color:var(--text-secondary);">bulletproof green button, optional ghost second.</span></span></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">06</span><span style="font-size:14px;line-height:1.45;"><strong style="font-weight:600;">Footnote, then footer</strong> — <span style="color:var(--text-secondary);">support contact and the confidentiality notice.</span></span></div>
+        </div>
+      </x-import>
+
+      <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,380px">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">Palette in play</x-import>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;">
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#06211A;"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#06211A</span><span style="font-size:13px;color:var(--text-tertiary);">Header band, code panel</span></div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#006F53;"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#006F53</span><span style="font-size:13px;color:var(--text-tertiary);">Buttons, links, eyebrow</span></div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#3DED97;"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#3DED97</span><span style="font-size:13px;color:var(--text-tertiary);">4px rule, OTP figure</span></div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#FA5323;"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#FA5323</span><span style="font-size:13px;color:var(--text-tertiary);">Failure only</span></div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#B88A2E;"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#B88A2E</span><span style="font-size:13px;color:var(--text-tertiary);">Overdue / escalation</span></div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:28px;height:28px;border-radius:var(--radius-sm);background:#F9F9F9;border:1px solid var(--border-subtle);"></span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);">#F9F9F9</span><span style="font-size:13px;color:var(--text-tertiary);">Canvas, detail wells</span></div>
+        </div>
+        <p style="margin:18px 0 0 0;font-size:13px;line-height:1.5;color:var(--text-tertiary);">Mail clients get literal hex, not tokens — that is the one place the system is written out by hand. Poppins and IBM Plex Mono cannot be used either: body type falls back to Arial/Helvetica, figures and IDs to Courier New, so the mono-for-scannable-values convention still holds.</p>
+      </x-import>
+
+      <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,380px">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">Rules</x-import>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px;">
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--text-brand);font-weight:700;">✓</span> One action per notification. If there are two, the second is a ghost button, never a second green one.</div>
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--text-brand);font-weight:700;">✓</span> State the fact in the headline, including the identifier. "Batch ${batchId} is waiting on your approval", not "You have a pending item".</div>
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--text-brand);font-weight:700;">✓</span> Say what happens next and by when — SLA, expiry, escalation — in the footnote.</div>
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--status-danger);font-weight:700;">✗</span> No emoji, no exclamation marks, no "Dear User". The reversed lockup is the only image.</div>
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--status-danger);font-weight:700;">✗</span> No Mint as a surface — it is the 4px rule and the OTP figure, nothing larger.</div>
+          <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="color:var(--status-danger);font-weight:700;">✗</span> Never more than two content blocks; move the rest into the app.</div>
+        </div>
+      </x-import>
+
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="max-width:1320px;margin:0 auto;padding:56px 64px 0 64px;">
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">The set · 9 types + shell</x-import>
+    <h2 style="margin:14px 0 0 0;font-size:32px;font-weight:700;letter-spacing:-.02em;color:var(--surface-inverse);">Every template, as it sends</h2>
+    <p style="margin:12px 0 0 0;font-size:15px;line-height:1.5;color:var(--text-secondary);max-width:70ch;">Each preview is the real file rendered at 600px. Subject line and preheader are part of the template — copy both.</p>
+  </div>
+
+  <div style="max-width:1320px;margin:0 auto;padding:32px 64px 80px 64px;display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;">
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">01 · Approval request</x-import>
+        <a href="./emails/rite-approval-request.html" target="_blank" style="font-size:12px;font-weight:600;">rite-approval-request.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Approval needed — payroll batch ${batchId} (${payPeriod})<br>Preheader: Payroll batch ${batchId} is waiting on your approval…</div>
+      <iframe data-email src="./emails/rite-approval-request.html" width="{{ previewWidth }}" height="834" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">02 · Status change</x-import>
+        <a href="./emails/rite-status-update.html" target="_blank" style="font-size:12px;font-weight:600;">rite-status-update.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Run ${runId} finished with ${warningCount} warnings<br>Preheader: Reconciliation is ready to review…</div>
+      <iframe data-email src="./emails/rite-status-update.html" width="{{ previewWidth }}" height="902" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">03 · Assignment</x-import>
+        <a href="./emails/rite-assignment.html" target="_blank" style="font-size:12px;font-weight:600;">rite-assignment.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: ${candidateName} routed to you — ${requirementTitle}<br>Preheader: A decision is needed by ${dueDate}…</div>
+      <iframe data-email src="./emails/rite-assignment.html" width="{{ previewWidth }}" height="834" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">04</span>
+          <x-import component-from-global-scope="RiteDesignSystem_277c56.Badge" tone="danger" dot="{{ true }}" hint-size="auto,22px">Alert / job failure</x-import>
+        </div>
+        <a href="./emails/rite-alert-failure.html" target="_blank" style="font-size:12px;font-weight:600;">rite-alert-failure.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Failed — ${objectName} load, run ${runId}<br>Preheader: ${errorCount} errors, no records committed…</div>
+      <iframe data-email src="./emails/rite-alert-failure.html" width="{{ previewWidth }}" height="983" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">05 · Run complete</x-import>
+        <a href="./emails/rite-run-complete.html" target="_blank" style="font-size:12px;font-weight:600;">rite-run-complete.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: ${objectName} conversion complete — ${runId}<br>Preheader: Reconciliation report is ready for sign-off…</div>
+      <iframe data-email src="./emails/rite-run-complete.html" width="{{ previewWidth }}" height="713" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">06 · Daily digest</x-import>
+        <a href="./emails/rite-digest.html" target="_blank" style="font-size:12px;font-weight:600;">rite-digest.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: ${totalCount} items waiting on you — ${digestDate}<br>Preheader: Nothing is overdue yet…</div>
+      <iframe data-email src="./emails/rite-digest.html" width="{{ previewWidth }}" height="788" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">07 · Welcome / invite</x-import>
+        <a href="./emails/rite-welcome-invite.html" target="_blank" style="font-size:12px;font-weight:600;">rite-welcome-invite.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Set up your RiteSuite account<br>Preheader: Your account is ready — activate it to finish onboarding…</div>
+      <iframe data-email src="./emails/rite-welcome-invite.html" width="{{ previewWidth }}" height="818" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">08 · One-time code / reset</x-import>
+        <a href="./emails/rite-otp-reset.html" target="_blank" style="font-size:12px;font-weight:600;">rite-otp-reset.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Your RiteSuite verification code<br>Preheader: Valid for ${expiryMinutes} minutes…</div>
+      <iframe data-email src="./emails/rite-otp-reset.html" width="{{ previewWidth }}" height="748" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-tertiary);">09</span>
+          <x-import component-from-global-scope="RiteDesignSystem_277c56.Badge" tone="warning" dot="{{ true }}" hint-size="auto,22px">Reminder / escalation</x-import>
+        </div>
+        <a href="./emails/rite-reminder-escalation.html" target="_blank" style="font-size:12px;font-weight:600;">rite-reminder-escalation.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-page);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: Overdue — batch ${batchId} approval (${overdueHours}h)<br>Preheader: Escalates to ${escalationName} at ${escalationTime}…</div>
+      <iframe data-email src="./emails/rite-reminder-escalation.html" width="{{ previewWidth }}" height="893" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+    <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" tone="subtle" style="width:648px" hint-size="648px,900px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="brand" hint-size="auto,16px">Shell · start here for new types</x-import>
+        <a href="./emails/rite-notification-shell.html" target="_blank" style="font-size:12px;font-weight:600;">rite-notification-shell.html</a>
+      </div>
+      <div style="margin-top:12px;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;font-family:var(--font-mono);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">Subject: ${subjectLine}<br>Preheader: ${preheaderText}</div>
+      <iframe data-email src="./emails/rite-notification-shell.html" width="{{ previewWidth }}" height="675" scrolling="no" style="display:block;margin:16px auto 0 auto;border:0;max-width:100%;"></iframe>
+    </x-import>
+
+  </div>
+
+  <sc-if value="{{ showImplementation }}" hint-placeholder-val="{{ true }}">
+  <div class="rite-dark" style="background:var(--surface-inverse-alt);padding:56px 64px 64px 64px;">
+    <div style="max-width:1320px;margin:0 auto;">
+      <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="mint" hint-size="auto,16px">Implementation</x-import>
+      <h2 style="margin:14px 0 0 0;font-size:32px;font-weight:700;letter-spacing:-.02em;color:var(--text-on-inverse);">Wiring it into an application</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px;">
+
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,260px">
+          <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="mint" hint-size="auto,16px">Placeholders</x-import>
+          <p style="margin:14px 0 0 0;font-size:14px;line-height:1.55;color:var(--text-secondary);">Every variable is <span style="font-family:var(--font-mono);color:var(--text-primary);">${field}</span> — substituted server-side before send. Three are shell-level and present in all ten files:</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-primary);">
+            <div>${moduleName}<span style="color:var(--text-tertiary);"> — header right, caps</span></div>
+            <div>${preheaderText}<span style="color:var(--text-tertiary);"> — inbox preview, ~85 chars</span></div>
+            <div>${recipientEmail}<span style="color:var(--text-tertiary);"> — confidentiality line</span></div>
+          </div>
+        </x-import>
+
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,260px">
+          <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="mint" hint-size="auto,16px">Adding a new type</x-import>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+            <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="font-family:var(--font-mono);color:var(--text-brand);">01</span> Copy <span style="font-family:var(--font-mono);color:var(--text-primary);">rite-notification-shell.html</span>.</div>
+            <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="font-family:var(--font-mono);color:var(--text-brand);">02</span> Replace the triad, pick at most two blocks from the pattern comments.</div>
+            <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="font-family:var(--font-mono);color:var(--text-brand);">03</span> Change the 4px rule colour only for failure or overdue states.</div>
+            <div style="font-size:14px;line-height:1.5;color:var(--text-secondary);"><span style="font-family:var(--font-mono);color:var(--text-brand);">04</span> Keep the footer block byte-identical across every module.</div>
+          </div>
+        </x-import>
+
+        <x-import component-from-global-scope="RiteDesignSystem_277c56.Card" hint-size="100%,260px">
+          <x-import component-from-global-scope="RiteDesignSystem_277c56.Eyebrow" tone="mint" hint-size="auto,16px">Before you ship</x-import>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;font-size:14px;line-height:1.5;color:var(--text-secondary);">
+            <div>Send a plain-text alternative part — same facts, same URL, no markup.</div>
+            <div>Keep each file under 100KB so Gmail does not clip it.</div>
+            <div>Point every URL at an absolute https link; no bare anchors.</div>
+            <div>Host <span style="font-family:var(--font-mono);">rite-logo-lockup-white.png</span> on your CDN and point each header <span style="font-family:var(--font-mono);">&lt;img&gt;</span> at that absolute https URL — alt text is already set.</div>
+          </div>
+        </x-import>
+
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;previewWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:600,&quot;min&quot;:320,&quot;max&quot;:600,&quot;step&quot;:40,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;showSpec&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showImplementation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      previewWidth: this.props.previewWidth ?? 600,
+      showSpec: this.props.showSpec ?? true,
+      showImplementation: this.props.showImplementation ?? true
+    };
+  }
+  componentDidMount() { this.startFit(); }
+  componentDidUpdate() { this.startFit(); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  startFit() {
+    clearInterval(this.timer);
+    const fit = () => {
+      document.querySelectorAll('iframe[data-email]').forEach(f => {
+        try {
+          const h = f.contentDocument && f.contentDocument.body && f.contentDocument.body.scrollHeight;
+          if (h > 200) f.style.height = (h + 2) + 'px';
+        } catch (e) {}
+      });
+    };
+    fit();
+    this.timer = setInterval(fit, 500);
+    setTimeout(() => clearInterval(this.timer), 8000);
+  }
+}
+</script>
+</body>
+</html>
